@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "sn.bambey.users";
+
+package sn.bambey.users;
+
+service Users {
+  rpc GetUser (UserGetRequest) returns (UserGetReply);
+  rpc CreateUser (UserCreateRequest) returns (UserCreateReply);
+  rpc UpdateUser (UserUpdateRequest) returns (UserUpdateReply);
+  rpc DeleteUser (UserDeleteRequest) returns (UserDeleteReply);
+  rpc ListUsers (ListUsersRequest) returns (ListUsersReply);
+}
+
+message UserGetRequest {
+  string id = 1;
+}
+
+message UserGetReply {
+  User user = 1;
+}
+
+message UserCreateRequest {
+  string first_name = 1;
+  string last_name = 2;
+  int32 age = 3;
+  string email = 4;
+}
+
+message UserCreateReply {
+  User user = 1;
+}
+
+message UserUpdateRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 age = 4;
+  string email = 5;
+}
+
+message UserUpdateReply {
+  User user = 1;
+}
+
+message UserDeleteRequest {
+  string id = 1;
+}
+
+message UserDeleteReply {
+  bool success = 1;
+}
+
+message ListUsersRequest {}
+
+message ListUsersReply {
+  repeated User users = 1;
+}
+
+message User {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 age = 4;
+  string email = 5;
+}
