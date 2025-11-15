@@ -1,0 +1,256 @@
+/* ==================== SERVICE MONITOR ==================== */
+.service-monitor {
+  margin-bottom: 2rem;
+}
+
+.monitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.update-time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-summary {
+  display: flex;
+  gap: 1rem;
+}
+
+.summary-item {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.summary-item.healthy {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.summary-item.unhealthy {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.refresh-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==================== SERVICES GRID ==================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--status-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card.healthy {
+  border-left-color: #10b981;
+}
+
+.service-card.unhealthy {
+  border-left-color: #ef4444;
+}
+
+.service-card.unknown {
+  border-left-color: #f59e0b;
+}
+
+/* ==================== SERVICE HEADER ==================== */
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.service-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.type-icon {
+  font-size: 1.5rem;
+}
+
+.service-title h4 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+}
+
+/* ==================== SERVICE DETAILS ==================== */
+.service-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-radius: var(--radius);
+}
+
+.detail-row.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.detail-row .label {
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.detail-row .value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.detail-row .value.url {
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+/* ==================== SERVICE FOOTER ==================== */
+.service-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.pulse-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ==================== MONITOR INFO ==================== */
+.monitor-info {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f0f9ff;
+  border-radius: var(--radius);
+  color: #1e40af;
+  font-size: 0.9rem;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .monitor-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .status-summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .refresh-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
