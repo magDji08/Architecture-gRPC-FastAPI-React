@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import grpc
 import users_pb2
 import users_pb2_grpc
+import os
 
 app = FastAPI(
     title="Users API Gateway",
@@ -10,17 +11,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configuration CORS
+# Configuration CORS - Autoriser toutes les origines pour le déploiement
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend React
+    allow_origins=["*"],  # En production, spécifier les domaines autorisés
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Connexion au serveur gRPC
-channel = grpc.insecure_channel("localhost:50051")
+# Connexion au serveur gRPC - Utiliser variable d'environnement
+GRPC_SERVER_URL = os.getenv('GRPC_SERVER_URL', 'localhost:50051')
+print(f"🔌 Connexion au serveur gRPC: {GRPC_SERVER_URL}")
+
+channel = grpc.insecure_channel(GRPC_SERVER_URL)
 stub = users_pb2_grpc.UsersStub(channel)
 
 @app.get("/")
